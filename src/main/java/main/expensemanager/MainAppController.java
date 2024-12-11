@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +19,22 @@ public class MainAppController implements Initializable {
     @FXML
     ScrollPane expensescrollPane;
     private static MainAppController instance;
+    @FXML
+    public Pane titlePane;
+    private double x,y;
+
+    public void init(Stage stage) {
+        titlePane.setOnMousePressed(MouseEvent -> {
+            x = MouseEvent.getSceneX();
+            y = MouseEvent.getSceneY();
+        });
+        titlePane.setOnMouseDragged(MouseEvent -> {
+            stage.setX(MouseEvent.getScreenX() - x);
+            stage.setY(MouseEvent.getScreenY() - y);
+        });
+        // close.setOnMouseClicked(MouseEvent -> stage.close());
+       // minimise.setOnMouseClicked(MouseEvent -> stage.setIconified(true));
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,4 +82,5 @@ public class MainAppController implements Initializable {
     }
     public static MainAppController getInstance() {
         return instance; }
+
 }

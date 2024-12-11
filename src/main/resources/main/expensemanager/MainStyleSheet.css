@@ -25,4 +25,8 @@
 
 .expensevbox {
     -fx-background-color:  linear-gradient( #0093E9 0%, #80D0C7 100%);}
-}
+
+.root2 {
+    -fx-background-radius: 0 0 20;
+    -fx-background-color:  linear-gradient( #0093E9 0%, #80D0C7 100%);
+}    

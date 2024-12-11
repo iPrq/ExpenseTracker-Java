@@ -3,7 +3,9 @@ package main.expensemanager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -15,7 +17,10 @@ public class MainApplication extends Application {
        stage.setResizable(false);
         stage.setTitle("Hello!");
         stage.setScene(scene);
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
+        ((MainAppController)fxmlLoader.getController()).init(stage);
     }
 
     public static void run() {

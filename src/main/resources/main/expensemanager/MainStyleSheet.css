@@ -9,7 +9,8 @@
 }
 .root {
     -fx-background-radius: 20;
-    -fx-background-color: linear-gradient(to bottom, #ADD8E6, #F0E68C, #FFEFD5);
+    -fx-background-color:  linear-gradient( #0093E9 0%, #80D0C7 100%);
+    
 }
 
 .fill {
@@ -21,6 +22,7 @@
     -fx-background-radius: 20 20 0 0;
 }
 
+
 .expensevbox {
-    -fx-background-color: linear-gradient(to bottom, #ADD8E6, #F0E68C, #FFEFD5);
+    -fx-background-color:  linear-gradient( #0093E9 0%, #80D0C7 100%);}
 }

@@ -70,9 +70,9 @@
                   <Label layoutX="26.0" layoutY="10.0" text="Click" />
                </children>
             </Pane>
-            <ScrollPane fx:id="expensescrollPane" layoutX="170.0" layoutY="40.0" prefHeight="434.0" prefWidth="583.0">
+            <ScrollPane fx:id="expensescrollPane" layoutX="170.0" layoutY="40.0" prefHeight="425.0" prefWidth="583.0">
                <content>
-                  <VBox fx:id="expensevbox" prefHeight="429.0" prefWidth="583.0" spacing="5.0" styleClass="expensevbox" />
+                  <VBox fx:id="expensevbox" prefHeight="422.0" prefWidth="583.0" spacing="5.0" styleClass="expensevbox" />
                </content>
             </ScrollPane>
          </children>

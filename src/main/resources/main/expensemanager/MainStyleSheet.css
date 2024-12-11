@@ -1,0 +1,26 @@
+.highlight {
+    -fx-background-color: #00000026 ;
+}
+.welcomepane {
+    -fx-background-radius: 10 10 0 0;
+}
+.buttons {
+    -fx-background-radius: 10;
+}
+.root {
+    -fx-background-radius: 20;
+    -fx-background-color: linear-gradient(to bottom, #ADD8E6, #F0E68C, #FFEFD5);
+}
+
+.fill {
+    -fx-background-color:  #d3d3d3;
+}
+
+.titlepane {
+    -fx-background-color: #000026;
+    -fx-background-radius: 20 20 0 0;
+}
+
+.expensevbox {
+    -fx-background-color: linear-gradient(to bottom, #ADD8E6, #F0E68C, #FFEFD5);
+}

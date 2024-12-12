@@ -69,12 +69,12 @@ public class MainAppController implements Initializable {
 
         Label expenseLabel = new Label(expense.expense);
         expenseLabel.getStyleClass().add("ulabel");
-        expenseLabel.setLayoutX(14);
+        expenseLabel.setLayoutX(20);
         expenseLabel.setLayoutY(14);
         expenseLabel.setPrefSize(142,26);
         Label moneyLabel = new Label(String.valueOf(expense.amount));
         moneyLabel.getStyleClass().add("ulabel");
-        moneyLabel.setLayoutX(14);
+        moneyLabel.setLayoutX(20);
         moneyLabel.setLayoutY(62);
         moneyLabel.setPrefSize(142,26);
         Label dateLabel = new Label(expense.date);

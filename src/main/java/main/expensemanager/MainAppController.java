@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainAppController implements Initializable {
@@ -22,6 +24,7 @@ public class MainAppController implements Initializable {
     @FXML
     public Pane titlePane;
     private double x,y;
+    DataBase dataBase;
 
     public void init(Stage stage) {
         titlePane.setOnMousePressed(MouseEvent -> {
@@ -44,6 +47,12 @@ public class MainAppController implements Initializable {
         expensescrollPane.setFitToWidth(true);
         expensescrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         expensescrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        dataBase = new DataBase();
+        try {
+            addPastExpense(dataBase.returndata());
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
@@ -83,6 +92,13 @@ public class MainAppController implements Initializable {
         expensevbox.getChildren().add(expensePane); }
         else { System.out.println("expensevbox is null!"); }
 
+    }
+    void addPastExpense(List<Expense> expenses) {
+        if (expenses != null) {
+            for (Expense expense : expenses) {
+                addExpensePane(expense);
+            }
+        }
     }
     public static MainAppController getInstance() {
         return instance; }

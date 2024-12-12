@@ -14,20 +14,18 @@ import java.sql.SQLException;
 public class ExpenseAdderController  {
 
     @FXML
-    private Pane addbtn;
-
-    @FXML
     private TextField amounttext;
 
     @FXML
     private TextField datetxt;
+    DataBase dataBase;
 
     @FXML
     private TextField expensetxt;
     private static Stage stage;
     @FXML
     void addbtnprsd() throws SQLException {
-        DataBase dataBase = new DataBase();
+        dataBase = new DataBase();
         String expenses = expensetxt.getText();
         double amount = Double.parseDouble(amounttext.getText());
         String date = datetxt.getText();

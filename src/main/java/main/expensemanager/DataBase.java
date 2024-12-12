@@ -26,7 +26,6 @@ public class DataBase {
                 "type TEXT NOT NULL" + ");";
         try (Connection conn = connect(); Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
-            System.out.println("database table created successfully");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -46,19 +45,20 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }
-    public List<Expense> returndata() {
+    public List<Expense> returndata() throws SQLException {
+        createDataBase();
         String sql = "SELECT * FROM uexpenses";
         List<Expense> expenses = new ArrayList<>();
         Expense expense;
         try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
-            while (rs.next()) {
-                expense = new Expense(
-                        rs.getString(2),
-                        rs.getDouble(3),
-                        rs.getString(4),
-                        rs.getString(5));
-                expenses.add(expense);
-            }
+               while (rs.next()) {
+                   expense = new Expense(
+                           rs.getString(2),
+                           rs.getDouble(3),
+                           rs.getString(4),
+                           rs.getString(5));
+                   expenses.add(expense);
+               }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

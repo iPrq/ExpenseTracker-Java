@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ExpenseAdderController  {
 
@@ -25,11 +26,16 @@ public class ExpenseAdderController  {
     private TextField expensetxt;
     private static Stage stage;
     @FXML
-    void addbtnprsd() {
-        String expense = expensetxt.getText();
+    void addbtnprsd() throws SQLException {
+        DataBase dataBase = new DataBase();
+        String expenses = expensetxt.getText();
         double amount = Double.parseDouble(amounttext.getText());
         String date = datetxt.getText();
-        MainAppController.getInstance().addExpensePane(expense,amount,date);
+        String type = "type";
+        Expense expense = new Expense(expenses,amount,date,type);
+        MainAppController.getInstance().addExpensePane(expense);
+        dataBase.addData(expense);
+        dataBase.printdata(dataBase.returndata());
         stage.close();
 
     }

@@ -5,6 +5,7 @@ module main.expensemanager {
     requires com.dlsc.formsfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens main.expensemanager to javafx.fxml;
     exports main.expensemanager;

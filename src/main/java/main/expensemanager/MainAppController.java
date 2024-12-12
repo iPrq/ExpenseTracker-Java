@@ -22,9 +22,11 @@ public class MainAppController implements Initializable {
     ScrollPane expensescrollPane;
     private static MainAppController instance;
     @FXML
-    public Pane titlePane;
+    public Pane titlePane,expensebtn,summarybtn;
     private double x,y;
     DataBase dataBase;
+    @FXML
+    private Pane expensePane;
 
     public void init(Stage stage) {
         titlePane.setOnMousePressed(MouseEvent -> {
@@ -42,11 +44,12 @@ public class MainAppController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         expensevbox.setFillWidth(false);
-        expensevbox.setSpacing(2);
+        expensevbox.setSpacing(4);
         expensescrollPane.setContent(expensevbox);
         expensescrollPane.setFitToWidth(true);
         expensescrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         expensescrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        expensevbox.prefWidthProperty().bind(expensescrollPane.widthProperty());
         dataBase = new DataBase();
         try {
             addPastExpense(dataBase.returndata());
@@ -71,22 +74,18 @@ public class MainAppController implements Initializable {
         expenseLabel.getStyleClass().add("ulabel");
         expenseLabel.setLayoutX(20);
         expenseLabel.setLayoutY(14);
-        expenseLabel.setPrefSize(142,26);
         Label moneyLabel = new Label(String.valueOf(expense.amount));
         moneyLabel.getStyleClass().add("ulabel");
         moneyLabel.setLayoutX(20);
         moneyLabel.setLayoutY(62);
-        moneyLabel.setPrefSize(142,26);
         Label dateLabel = new Label(expense.date);
         dateLabel.getStyleClass().add("ulabel");
         dateLabel.setLayoutX(427);
         dateLabel.setLayoutY(14);
-        dateLabel.setPrefSize(142,26);
         Label typeLabel = new Label(expense.type);
         typeLabel.getStyleClass().add("ulabel");
         typeLabel.setLayoutX(427);
         typeLabel.setLayoutY(62);
-        typeLabel.setPrefSize(142,26);
         expensePane.getChildren().addAll(expenseLabel,moneyLabel,dateLabel,typeLabel);
         if (expensevbox != null) {
         expensevbox.getChildren().add(expensePane); }
@@ -103,4 +102,17 @@ public class MainAppController implements Initializable {
     public static MainAppController getInstance() {
         return instance; }
 
+    @FXML
+    private void setePanevisible() {
+        expensePane.setVisible(true);
+        expensebtn.getStyleClass().add("clicked");
+        summarybtn.getStyleClass().remove("clicked");
+    }
+
+    @FXML
+    private void setsPanevisible() {
+       expensePane.setVisible(false);
+       expensebtn.getStyleClass().remove("clicked");
+       summarybtn.getStyleClass().add("clicked");
+    }
 }

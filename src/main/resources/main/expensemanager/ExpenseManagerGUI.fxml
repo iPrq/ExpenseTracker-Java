@@ -18,7 +18,7 @@
                   <String fx:value="buttons" />
                </styleClass>
                <children>
-                  <Pane layoutX="3.0" layoutY="165.0" prefHeight="50.0" prefWidth="163.0">
+                  <Pane fx:id="expensebtn" layoutX="3.0" layoutY="165.0" onMouseClicked="#setePanevisible" prefHeight="50.0" prefWidth="163.0">
                      <styleClass>
                         <String fx:value="buttons" />
                         <String fx:value="highlight" />
@@ -29,7 +29,7 @@
                         <Label alignment="CENTER" layoutX="36.0" layoutY="17.0" prefHeight="17.0" prefWidth="88.0" text="Expenses" textFill="WHITE" />
                      </children>
                   </Pane>
-                  <Pane layoutX="2.0" layoutY="218.0" prefHeight="50.0" prefWidth="163.0">
+                  <Pane fx:id="summarybtn" layoutX="2.0" layoutY="218.0" onMouseClicked="#setsPanevisible" prefHeight="50.0" prefWidth="163.0">
                      <styleClass>
                         <String fx:value="buttons" />
                         <String fx:value="hover" />
@@ -59,34 +59,38 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane layoutX="286.0" prefHeight="36.0" prefWidth="350.0">
+            <Pane fx:id="expensePane" layoutX="173.0" layoutY="1.0" prefHeight="514.0" prefWidth="582.0">
                <children>
-                  <Label alignment="CENTER" layoutX="92.0" layoutY="5.0" prefHeight="26.0" prefWidth="147.0" text="Expenses" textFill="WHITE">
-                     <font>
-                        <Font name="Roboto" size="18.0" />
-                     </font>
-                  </Label>
+                  <ScrollPane fx:id="expensescrollPane" layoutY="39.0" prefHeight="425.0" prefWidth="583.0">
+                     <content>
+                        <VBox fx:id="expensevbox" prefHeight="422.0" prefWidth="583.0" spacing="5.0" styleClass="expensevbox" />
+                     </content>
+                  </ScrollPane>
+                  <Pane layoutX="488.0" layoutY="470.0" onMousePressed="#buttonprsd" prefHeight="36.0" prefWidth="79.0">
+                     <styleClass>
+                        <String fx:value="buttons" />
+                        <String fx:value="hover" />
+                        <String fx:value="highlight" />
+                     </styleClass>
+                     <children>
+                        <Label layoutX="26.0" layoutY="10.0" text="Click" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="96.0" prefHeight="36.0" prefWidth="350.0">
+                     <children>
+                        <Label alignment="CENTER" layoutX="92.0" layoutY="5.0" prefHeight="26.0" prefWidth="147.0" text="Expenses" textFill="WHITE">
+                           <font>
+                              <Font name="Roboto" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <styleClass>
+                        <String fx:value="highlight" />
+                        <String fx:value="buttons" />
+                     </styleClass>
+                  </Pane>
                </children>
-               <styleClass>
-                  <String fx:value="highlight" />
-                  <String fx:value="buttons" />
-               </styleClass>
             </Pane>
-            <Pane layoutX="648.0" layoutY="474.0" onMousePressed="#buttonprsd" prefHeight="36.0" prefWidth="79.0">
-               <styleClass>
-                  <String fx:value="buttons" />
-                  <String fx:value="hover" />
-                  <String fx:value="highlight" />
-               </styleClass>
-               <children>
-                  <Label layoutX="26.0" layoutY="10.0" text="Click" />
-               </children>
-            </Pane>
-            <ScrollPane fx:id="expensescrollPane" layoutX="170.0" layoutY="40.0" prefHeight="425.0" prefWidth="583.0">
-               <content>
-                  <VBox fx:id="expensevbox" prefHeight="422.0" prefWidth="583.0" spacing="5.0" styleClass="expensevbox" />
-               </content>
-            </ScrollPane>
          </children>
       </Pane>
       <Pane fx:id="titlePane" prefHeight="26.0" prefWidth="753.0">

@@ -123,5 +123,6 @@ public class MainAppController implements Initializable {
     @FXML
     private void deletebtn() {
         DataBase.deleteDataBase();
+        expensevbox.getChildren().clear();
     }
 }

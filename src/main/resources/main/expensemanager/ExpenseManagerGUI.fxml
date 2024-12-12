@@ -3,6 +3,8 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -50,7 +52,7 @@
                         <String fx:value="highlight" />
                      </styleClass>
                      <children>
-                        <Label alignment="CENTER" layoutX="17.0" layoutY="4.0" prefHeight="17.0" prefWidth="73.0" text="USER" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="17.0" layoutY="4.0" prefHeight="17.0" prefWidth="73.0" text="User" textFill="WHITE">
                            <font>
                               <Font name="Roboto" size="16.0" />
                            </font>
@@ -73,7 +75,7 @@
                         <String fx:value="highlight" />
                      </styleClass>
                      <children>
-                        <Label layoutX="26.0" layoutY="10.0" text="Click" />
+                        <Label layoutX="26.0" layoutY="10.0" text="Click" textFill="WHITE" />
                      </children>
                   </Pane>
                   <Pane layoutX="96.0" prefHeight="36.0" prefWidth="350.0">
@@ -89,6 +91,16 @@
                         <String fx:value="buttons" />
                      </styleClass>
                   </Pane>
+                  <Pane layoutX="407.0" layoutY="470.0" onMouseClicked="#deletebtn" onMousePressed="#buttonprsd" prefHeight="36.0" prefWidth="79.0">
+                     <styleClass>
+                        <String fx:value="buttons" />
+                        <String fx:value="hover" />
+                        <String fx:value="highlight" />
+                     </styleClass>
+                     <children>
+                        <Label layoutX="21.0" layoutY="10.0" text="Delete" textFill="WHITE" />
+                     </children>
+                  </Pane>
                </children>
             </Pane>
          </children>
@@ -100,6 +112,16 @@
          </styleClass>
          <children>
             <Label alignment="CENTER" layoutX="17.0" layoutY="5.0" prefHeight="17.0" prefWidth="88.0" text="Tasks" textFill="WHITE" />
+            <ImageView fx:id="close" fitHeight="17.0" fitWidth="25.0" layoutX="720.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/cancel.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="minimise" fitHeight="17.0" fitWidth="25.0" layoutX="704.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/minimise.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

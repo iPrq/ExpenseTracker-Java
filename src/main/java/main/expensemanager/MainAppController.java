@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -13,6 +14,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static main.expensemanager.MainApplication.showerror;
 
 public class MainAppController implements Initializable {
     public MainAppController() { instance = this; }
@@ -27,6 +30,8 @@ public class MainAppController implements Initializable {
     DataBase dataBase;
     @FXML
     private Pane expensePane;
+    @FXML
+    private ImageView close,minimise;
 
     public void init(Stage stage) {
         titlePane.setOnMousePressed(MouseEvent -> {
@@ -37,8 +42,8 @@ public class MainAppController implements Initializable {
             stage.setX(MouseEvent.getScreenX() - x);
             stage.setY(MouseEvent.getScreenY() - y);
         });
-        // close.setOnMouseClicked(MouseEvent -> stage.close());
-       // minimise.setOnMouseClicked(MouseEvent -> stage.setIconified(true));
+        close.setOnMouseClicked(MouseEvent -> stage.close());
+        minimise.setOnMouseClicked(MouseEvent -> stage.setIconified(true));
     }
 
     @Override
@@ -114,5 +119,9 @@ public class MainAppController implements Initializable {
        expensePane.setVisible(false);
        expensebtn.getStyleClass().remove("clicked");
        summarybtn.getStyleClass().add("clicked");
+    }
+    @FXML
+    private void deletebtn() {
+        DataBase.deleteDataBase();
     }
 }

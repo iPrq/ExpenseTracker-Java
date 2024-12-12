@@ -1,18 +1,20 @@
 package main.expensemanager;
 
+import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static main.expensemanager.MainApplication.showerror;
+
 public class DataBase {
     public final String url = "jdbc:sqlite:expenses.db";
-    public static int index = 0;
     public Connection connect() {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            showerror("SQL Exception",e.getMessage());
         }
         return conn;
     }
@@ -27,7 +29,7 @@ public class DataBase {
         try (Connection conn = connect(); Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            showerror("SQL Exception",e.getMessage());
         }
 
     }
@@ -40,9 +42,8 @@ public class DataBase {
             pstmt.setString(3, expense.date);
             pstmt.setString(4, expense.type);
             pstmt.executeUpdate();
-            System.out.println("data added successfully");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            showerror("SQL Exception",e.getMessage());
         }
     }
     public List<Expense> returndata() throws SQLException {
@@ -51,29 +52,41 @@ public class DataBase {
         List<Expense> expenses = new ArrayList<>();
         Expense expense;
         try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
-               while (rs.next()) {
-                   expense = new Expense(
-                           rs.getString(2),
-                           rs.getDouble(3),
-                           rs.getString(4),
-                           rs.getString(5));
-                   expenses.add(expense);
-               }
+            while (rs.next()) {
+                expense = new Expense(
+                        rs.getString(2),
+                        rs.getDouble(3),
+                        rs.getString(4),
+                        rs.getString(5));
+                expenses.add(expense);
+            }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            showerror("SQL Exception",e.getMessage());
         }
         return expenses;
     }
 
     void printdata(List<Expense> expenses) {
         if (expenses == null) {
-            System.out.println("it is null");
+            showerror("Error", "Something went wrong");
         }
-       else {
-           for(Expense expense : expenses) {
-               System.out.println(expense.expense +" " + String.valueOf(expense.amount) + " " + expense.date);
-           }
+        else {
+            for(Expense expense : expenses) {
+                System.out.println(expense.expense +" " + String.valueOf(expense.amount) + " " + expense.date);
+            }
         }
     }
-
+    public static void deleteDataBase() {
+        File dbfile = new File("expenses.db");
+        if(dbfile.exists()) {
+            if (dbfile.delete()) {
+                ExpenseAdderController.showpopup("File Deleted", "The DataBase has been deleted Successfully");
+            } else {
+                showerror("File Deletion Error", "Failed to Delete File");
+            }
+        }
+        else{
+            showerror("File Deletion Error", "Failed to Delete File or The File is already deleted");
+        }
+    }
 }

@@ -3,6 +3,7 @@ package main.expensemanager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -23,6 +24,13 @@ public class MainApplication extends Application {
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
         ((MainAppController)fxmlLoader.getController()).init(stage);
+    }
+    public static void showerror(String title,String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     public static void run() {

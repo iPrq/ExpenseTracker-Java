@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -63,6 +64,13 @@ public class ExpenseAdderController implements Initializable {
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.showAndWait();
+    }
+    public static void showpopup(String title,String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
 

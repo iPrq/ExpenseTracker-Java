@@ -9,12 +9,12 @@
 }
 .root {
     -fx-background-radius: 20;
-    -fx-background-color:  linear-gradient( #0093E9 0%, #80D0C7 100%);
+    -fx-background-color:  #301934;
     
 }
 
 .fill {
-    -fx-background-color:  #d3d3d3;
+    -fx-background-color:  #301934;
 }
 
 .titlepane {
@@ -24,9 +24,29 @@
 
 
 .expensevbox {
-    -fx-background-color:  linear-gradient( #0093E9 0%, #80D0C7 100%);}
+    -fx-background-color:   #301934;}
 
 .root2 {
     -fx-background-radius: 0 0 20;
-    -fx-background-color:  linear-gradient( #0093E9 0%, #80D0C7 100%);
+    -fx-background-color:  #301934;
 }    
+
+.clicked {
+    -fx-background-color: b327f9 50%;
+}
+.hover {
+    -fx-cursor: hand;
+    -fx-transition: background-color 0.5s ease-in-out;
+}
+.hover:hover {
+    -fx-background-color:b327f9 50%;
+}
+
+.paneclr {
+    -fx-background-color: da90ff 20%;
+}
+.ulabel {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-family: Roboto;
+}

@@ -1,6 +1,8 @@
 package main.expensemanager;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBase {
     public final String url = "jdbc:sqlite:expenses.db";
@@ -44,32 +46,34 @@ public class DataBase {
             System.out.println(e.getMessage());
         }
     }
-    public Expense returndata() {
+    public List<Expense> returndata() {
         String sql = "SELECT * FROM uexpenses";
-        Expense expense = null;
+        List<Expense> expenses = new ArrayList<>();
+        Expense expense;
         try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
-            if (rs.next()) {
+            while (rs.next()) {
                 expense = new Expense(
                         rs.getString(2),
                         rs.getDouble(3),
                         rs.getString(4),
                         rs.getString(5));
-
-            }
-            else {
-                System.out.println("No data in Database");
+                expenses.add(expense);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return expense;
+        return expenses;
     }
 
-    void printdata(Expense expense) {
-        if (expense == null) {
+    void printdata(List<Expense> expenses) {
+        if (expenses == null) {
             System.out.println("it is null");
         }
-        System.out.println(expense.expense +  String.valueOf(expense.amount));
+       else {
+           for(Expense expense : expenses) {
+               System.out.println(expense.expense +" " + String.valueOf(expense.amount) + " " + expense.date);
+           }
+        }
     }
 
 }

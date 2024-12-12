@@ -12,58 +12,70 @@
    <children>
       <Pane layoutY="29.0" prefHeight="514.0" prefWidth="753.0">
          <children>
-            <Pane layoutX="1.0" prefHeight="514.0" prefWidth="168.0" styleClass="highlight">
+            <Pane layoutX="1.0" layoutY="4.0" prefHeight="496.0" prefWidth="170.0">
+               <styleClass>
+                  <String fx:value="highlight" />
+                  <String fx:value="buttons" />
+               </styleClass>
                <children>
-                  <Pane prefHeight="52.0" prefWidth="168.0">
-                     <children>
-                        <Label alignment="CENTER" layoutX="4.0" layoutY="13.0" prefHeight="26.0" prefWidth="88.0" text="Welcome">
-                           <font>
-                              <Font name="Roboto" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="87.0" layoutY="13.0" prefHeight="26.0" prefWidth="79.0" text="User">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
+                  <Pane layoutX="3.0" layoutY="165.0" prefHeight="50.0" prefWidth="163.0">
                      <styleClass>
+                        <String fx:value="buttons" />
                         <String fx:value="highlight" />
-                        <String fx:value="welcomepane" />
+                        <String fx:value="clicked" />
+                        <String fx:value="hover" />
                      </styleClass>
-                  </Pane>
-                  <Pane layoutY="54.0" prefHeight="52.0" prefWidth="168.0">
                      <children>
-                        <Label alignment="CENTER" layoutX="13.0" layoutY="6.0" prefHeight="42.0" prefWidth="142.0" text="Expenses" />
+                        <Label alignment="CENTER" layoutX="36.0" layoutY="17.0" prefHeight="17.0" prefWidth="88.0" text="Expenses" textFill="WHITE" />
                      </children>
+                  </Pane>
+                  <Pane layoutX="2.0" layoutY="218.0" prefHeight="50.0" prefWidth="163.0">
+                     <styleClass>
+                        <String fx:value="buttons" />
+                        <String fx:value="hover" />
+                        <String fx:value="highlight" />
+                     </styleClass>
+                     <children>
+                        <Label alignment="CENTER" layoutX="37.0" layoutY="19.0" prefHeight="17.0" prefWidth="88.0" text="Summary" textFill="WHITE" />
+                     </children>
+                  </Pane>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="36.0" prefWidth="133.0" text="Welcome!" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto" size="18.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="26.0" layoutY="63.0" prefHeight="26.0" prefWidth="108.0">
                      <styleClass>
                         <String fx:value="buttons" />
                         <String fx:value="highlight" />
                      </styleClass>
-                  </Pane>
-                  <Pane layoutY="108.0" prefHeight="52.0" prefWidth="168.0">
                      <children>
-                        <Label alignment="CENTER" layoutX="13.0" layoutY="7.0" prefHeight="42.0" prefWidth="142.0" text="Summary" />
+                        <Label alignment="CENTER" layoutX="17.0" layoutY="4.0" prefHeight="17.0" prefWidth="73.0" text="USER" textFill="WHITE">
+                           <font>
+                              <Font name="Roboto" size="16.0" />
+                           </font>
+                        </Label>
                      </children>
-                     <styleClass>
-                        <String fx:value="buttons" />
-                        <String fx:value="highlight" />
-                     </styleClass>
                   </Pane>
                </children>
             </Pane>
-            <Pane layoutX="170.0" layoutY="-2.0" prefHeight="42.0" prefWidth="583.0" styleClass="highlight">
+            <Pane layoutX="286.0" prefHeight="36.0" prefWidth="350.0">
                <children>
-                  <Label alignment="CENTER" layoutX="101.0" layoutY="1.0" prefHeight="36.0" prefWidth="366.0" text="Expenses">
+                  <Label alignment="CENTER" layoutX="92.0" layoutY="5.0" prefHeight="26.0" prefWidth="147.0" text="Expenses" textFill="WHITE">
                      <font>
-                        <Font size="13.0" />
+                        <Font name="Roboto" size="18.0" />
                      </font>
                   </Label>
                </children>
+               <styleClass>
+                  <String fx:value="highlight" />
+                  <String fx:value="buttons" />
+               </styleClass>
             </Pane>
             <Pane layoutX="648.0" layoutY="474.0" onMousePressed="#buttonprsd" prefHeight="36.0" prefWidth="79.0">
                <styleClass>
                   <String fx:value="buttons" />
+                  <String fx:value="hover" />
                   <String fx:value="highlight" />
                </styleClass>
                <children>

@@ -53,24 +53,28 @@ public class MainAppController implements Initializable {
 
     public void addExpensePane(Expense expense) {
         Pane expensePane = new Pane();
-        expensePane.setStyle("-fx-background-color: #00000026; -fx-background-radius: 10;");
+        expensePane.setStyle("-fx-background-color: #da90ff; -fx-background-radius: 10;");
         expensePane.setPrefSize(582,110);
         expensePane.setMaxSize(582,110);
         expensePane.setMinSize(582,110);
 
         Label expenseLabel = new Label(expense.expense);
+        expenseLabel.getStyleClass().add("ulabel");
         expenseLabel.setLayoutX(14);
         expenseLabel.setLayoutY(14);
         expenseLabel.setPrefSize(142,26);
         Label moneyLabel = new Label(String.valueOf(expense.amount));
+        moneyLabel.getStyleClass().add("ulabel");
         moneyLabel.setLayoutX(14);
         moneyLabel.setLayoutY(62);
         moneyLabel.setPrefSize(142,26);
-        Label  dateLabel = new Label(expense.date);
+        Label dateLabel = new Label(expense.date);
+        dateLabel.getStyleClass().add("ulabel");
         dateLabel.setLayoutX(427);
         dateLabel.setLayoutY(14);
         dateLabel.setPrefSize(142,26);
         Label typeLabel = new Label(expense.type);
+        typeLabel.getStyleClass().add("ulabel");
         typeLabel.setLayoutX(427);
         typeLabel.setLayoutY(62);
         typeLabel.setPrefSize(142,26);

@@ -3,6 +3,7 @@ package main.expensemanager;
 import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static main.expensemanager.MainApplication.showerror;
@@ -66,15 +67,49 @@ public class DataBase {
         return expenses;
     }
 
-    void printdata(List<Expense> expenses) {
+    public HashMap<String,Integer> summarydata(List<Expense> expenses) {
+        HashMap<String,Integer> summarydata = new HashMap<>();
+        summarydata.put("expense",0);
+        summarydata.put("amount",0);
+        summarydata.put("Others",0);
+        summarydata.put("Leisure",0);
+        summarydata.put("Entertainment",0);
+        summarydata.put("Work",0);
+        summarydata.put("Necessities",0);
+        summarydata.put("Travel",0);
+        summarydata.put("total iterations",0);
+
         if (expenses == null) {
             showerror("Error", "Something went wrong");
         }
         else {
             for(Expense expense : expenses) {
-                System.out.println(expense.expense +" " + String.valueOf(expense.amount) + " " + expense.date);
+                summarydata.put("expense",summarydata.get("expense")+1);
+                summarydata.put("expense",summarydata.get("amount")+1);
+                switch(expense.type) {
+                    case "Others":
+                        summarydata.put("Others",summarydata.get("Others")+1);
+                        break;
+                    case "Travel":
+                        summarydata.put("Travel",summarydata.get("Travel")+1);
+                        break;
+                    case "Entertainment":
+                        summarydata.put("Entertainment",summarydata.get("Entertainment")+1);
+                        break;
+                    case "Work":
+                        summarydata.put("Work",summarydata.get("Work")+1);
+                        break;
+                    case "Leisure":
+                        summarydata.put("Leisure",summarydata.get("Leisure")+1);
+                        break;
+                    case "Necessities" :
+                        summarydata.put("Necessities",summarydata.get("Necessities")+1);
+                        break;
+                }
+                summarydata.put("total iterations",summarydata.get("total iterations")+1);
             }
         }
+        return summarydata;
     }
     public static void deleteDataBase() {
         File dbfile = new File("expenses.db");

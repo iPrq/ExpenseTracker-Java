@@ -1,7 +1,10 @@
 package main.expensemanager;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -12,10 +15,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import static main.expensemanager.MainApplication.showerror;
 
 public class MainAppController implements Initializable {
     public MainAppController() { instance = this; }
@@ -29,9 +31,11 @@ public class MainAppController implements Initializable {
     private double x,y;
     DataBase dataBase;
     @FXML
-    private Pane expensePane;
+    private Pane expensePane, summaryPane;
     @FXML
     private ImageView close,minimise;
+    @FXML
+    private PieChart expensePieChart;
 
     public void init(Stage stage) {
         titlePane.setOnMousePressed(MouseEvent -> {
@@ -58,6 +62,7 @@ public class MainAppController implements Initializable {
         dataBase = new DataBase();
         try {
             addPastExpense(dataBase.returndata());
+            setPiechart(piechartdata(dataBase.summarydata(dataBase.returndata())));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -110,6 +115,7 @@ public class MainAppController implements Initializable {
     @FXML
     private void setePanevisible() {
         expensePane.setVisible(true);
+        summaryPane.setVisible(false);
         expensebtn.getStyleClass().add("clicked");
         summarybtn.getStyleClass().remove("clicked");
     }
@@ -117,6 +123,7 @@ public class MainAppController implements Initializable {
     @FXML
     private void setsPanevisible() {
        expensePane.setVisible(false);
+       summaryPane.setVisible(true);
        expensebtn.getStyleClass().remove("clicked");
        summarybtn.getStyleClass().add("clicked");
     }
@@ -125,4 +132,31 @@ public class MainAppController implements Initializable {
         DataBase.deleteDataBase();
         expensevbox.getChildren().clear();
     }
+    public static HashMap<String,Double> piechartdata(HashMap<String,Integer> summarydata) {
+        HashMap<String,Double> piechartdata = new HashMap<>();
+        Double iterations = Double.valueOf(summarydata.get("total iterations"));
+        piechartdata.put("exp", summarydata.get("expense")/iterations);
+        piechartdata.put("amt", summarydata.get("amount")/iterations);
+        piechartdata.put("oth", summarydata.get("Others")/iterations);
+        piechartdata.put("lei", summarydata.get("Leisure")/iterations);
+        piechartdata.put("tra", summarydata.get("Travel")/iterations);
+        piechartdata.put("nes", summarydata.get("Necessities")/iterations);
+        piechartdata.put("ent", summarydata.get("Entertainment")/iterations);
+        piechartdata.put("wor", summarydata.get("Work")/iterations);
+        return piechartdata;
+    }
+
+    public void setPiechart(HashMap<String,Double> datapie) {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Others", datapie.get("oth")),
+                new PieChart.Data("Leisure", datapie.get("lei")),
+                new PieChart.Data("Travel", datapie.get("tra")),
+                new PieChart.Data("Necessities", datapie.get("nes")),
+                new PieChart.Data("Work", datapie.get("wor")),
+                new PieChart.Data("Entertainment", datapie.get("ent"))
+        );
+        expensePieChart.setData(pieChartData);
+    }
+
+
 }

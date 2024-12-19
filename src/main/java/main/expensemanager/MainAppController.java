@@ -8,6 +8,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -24,7 +25,7 @@ public class MainAppController implements Initializable {
     @FXML
     private VBox expensevbox;
     @FXML
-    ScrollPane expensescrollPane;
+    private ScrollPane expensescrollPane, summaryScrollPane;
     private static MainAppController instance;
     @FXML
     public Pane titlePane,expensebtn,summarybtn;
@@ -35,7 +36,9 @@ public class MainAppController implements Initializable {
     @FXML
     private ImageView close,minimise;
     @FXML
-    private PieChart expensePieChart;
+    private PieChart typePieChart,expensePieChart;
+    @FXML
+    private AnchorPane summaryanchor;
 
     public void init(Stage stage) {
         titlePane.setOnMousePressed(MouseEvent -> {
@@ -58,11 +61,16 @@ public class MainAppController implements Initializable {
         expensescrollPane.setFitToWidth(true);
         expensescrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         expensescrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        summaryScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        summaryScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         expensevbox.prefWidthProperty().bind(expensescrollPane.widthProperty());
+        summaryanchor.prefWidthProperty().bind(summaryScrollPane.widthProperty());
+
         dataBase = new DataBase();
         try {
             addPastExpense(dataBase.returndata());
             setPiechart(piechartdata(dataBase.summarydata(dataBase.returndata())));
+            setSummaryPieChart(dataBase.expensessummary(dataBase.returndata()));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -155,8 +163,13 @@ public class MainAppController implements Initializable {
                 new PieChart.Data("Work", datapie.get("wor")),
                 new PieChart.Data("Entertainment", datapie.get("ent"))
         );
-        expensePieChart.setData(pieChartData);
+        typePieChart.setData(pieChartData);
     }
-
-
-}
+    public void setSummaryPieChart(HashMap<String,Double> datamap) {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        for (String key : datamap.keySet()) {
+            pieChartData.add(new PieChart.Data(key, datamap.get(key)));
+        }
+            expensePieChart.setData(pieChartData);
+    }
+ }

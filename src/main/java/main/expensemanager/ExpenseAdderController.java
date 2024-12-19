@@ -52,6 +52,7 @@ public class ExpenseAdderController implements Initializable {
         MainAppController.getInstance().addExpensePane(expense);
         dataBase.addData(expense);
         MainAppController.getInstance().setPiechart(MainAppController.piechartdata(dataBase.summarydata(dataBase.returndata())));
+        MainAppController.getInstance().setSummaryPieChart(dataBase.expensessummary(dataBase.returndata()));
         stage.close();
 
     }

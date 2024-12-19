@@ -124,4 +124,18 @@ public class DataBase {
             showerror("File Deletion Error", "Failed to Delete File or The File is already deleted");
         }
     }
+    public HashMap<String, Double> expensessummary(List<Expense> expenses) {
+        HashMap<String,Double> expsummary = new HashMap<>();
+        for(Expense expense : expenses ) {
+            expsummary.put(expense.expense,expense.amount);
+        }
+        return expsummary;
+    }
+    public double totalexpense(List<Expense> expenses) {
+        double amount = 0;
+        for (Expense expense: expenses) {
+            amount += expense.amount;
+        }
+        return amount;
+    }
 }

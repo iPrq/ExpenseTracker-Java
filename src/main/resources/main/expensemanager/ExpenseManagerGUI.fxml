@@ -76,7 +76,7 @@
                         <String fx:value="highlight" />
                      </styleClass>
                      <children>
-                        <Label layoutX="26.0" layoutY="10.0" text="Click" textFill="WHITE" />
+                        <Label layoutX="26.0" layoutY="10.0" text="Add" textFill="WHITE" />
                      </children>
                   </Pane>
                   <Pane layoutX="96.0" prefHeight="36.0" prefWidth="350.0">
@@ -92,7 +92,7 @@
                         <String fx:value="buttons" />
                      </styleClass>
                   </Pane>
-                  <Pane layoutX="407.0" layoutY="470.0" onMouseClicked="#deletebtn" onMousePressed="#buttonprsd" prefHeight="36.0" prefWidth="79.0">
+                  <Pane layoutX="407.0" layoutY="470.0" onMouseClicked="#deletebtn" onMousePressed="#deletebtn" prefHeight="36.0" prefWidth="79.0">
                      <styleClass>
                         <String fx:value="buttons" />
                         <String fx:value="hover" />

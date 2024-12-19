@@ -135,7 +135,7 @@
                                  </styleClass>
                                  <children>
                                     <Label layoutX="21.0" layoutY="14.0" prefHeight="20.0" prefWidth="147.0" styleClass="ulabel" text="Total Expenditure:" />
-                                    <Label layoutX="154.0" layoutY="14.0" prefHeight="17.0" prefWidth="147.0" styleClass="ulabel" text="Label" />
+                                    <Label fx:id="totalexpenselbl" layoutX="154.0" layoutY="14.0" prefHeight="17.0" prefWidth="147.0" styleClass="ulabel" text="0" />
                                  </children>
                               </Pane>
                               <Pane layoutX="20.0" layoutY="409.0" prefHeight="351.0" prefWidth="490.0">

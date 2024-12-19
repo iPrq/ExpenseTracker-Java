@@ -39,6 +39,8 @@ public class MainAppController implements Initializable {
     private PieChart typePieChart,expensePieChart;
     @FXML
     private AnchorPane summaryanchor;
+    @FXML
+    private Label totalexpenselbl;
 
     public void init(Stage stage) {
         titlePane.setOnMousePressed(MouseEvent -> {
@@ -71,6 +73,7 @@ public class MainAppController implements Initializable {
             addPastExpense(dataBase.returndata());
             setPiechart(piechartdata(dataBase.summarydata(dataBase.returndata())));
             setSummaryPieChart(dataBase.expensessummary(dataBase.returndata()));
+            settotalexpense(dataBase.totalexpense(dataBase.returndata()));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -171,5 +174,8 @@ public class MainAppController implements Initializable {
             pieChartData.add(new PieChart.Data(key, datamap.get(key)));
         }
             expensePieChart.setData(pieChartData);
+    }
+    public void settotalexpense(double amount) {
+        totalexpenselbl.setText(String.valueOf(amount)+"₹");
     }
  }
